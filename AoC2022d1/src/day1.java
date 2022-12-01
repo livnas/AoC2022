@@ -13,44 +13,46 @@ public class day1 {
         ArrayList<Integer> valueList = new ArrayList<Integer>(); // Create an ArrayList object
 
         try {
-            File calFile = new File("values.txt");
 
-            Scanner reader = new Scanner(calFile);
+                File calFile = new File("values.txt");
 
-            while (reader.hasNextLine())
-            {
+                Scanner reader = new Scanner(calFile);
 
-                String data = reader.nextLine();
-
-                if(!data.equals(""))
+                while (reader.hasNextLine())
                 {
-                    dataV = Integer.parseInt(data);
-                    value += dataV;
+
+                    String data = reader.nextLine();
+
+                    if(!data.equals(""))
+                    {
+                        dataV = Integer.parseInt(data);
+                        value += dataV;
+                    }
+                    else if (data.equals(""))
+                    {
+                        valueList.add(value);
+                        value = 0;
+                    }
+
                 }
-                else if (data.equals(""))
-                {
-                    valueList.add(value);
-                    value = 0;
-                }
+
+                reader.close();
 
             }
-
-            Collections.sort(valueList);
-
-            System.out.println(valueList.get(valueList.size() - 1) + valueList.get(valueList.size() - 2) + valueList.get(valueList.size() - 3));
-
-
-            reader.close();
-
-        }
         catch (FileNotFoundException e)
         {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        
+        Collections.sort(valueList);
 
+        System.out.println("First Task: " + valueList.get(valueList.size() - 1));
+        System.out.println("Second Task: " + (valueList.get(valueList.size() - 1) + valueList.get(valueList.size() - 2) + valueList.get(valueList.size() - 3)));
 
     }
 
 
 }
+
+
